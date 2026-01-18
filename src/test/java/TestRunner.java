@@ -5,12 +5,11 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.idividualsPages.DisabilityAssessmentServicePage;
-import pages.idividualsPages.IndividualLandingPage;
-import pages.idividualsPages.IndividualLoginPage;
-import pages.idividualsPages.IndividualServicesPage;
+import pages.idividualsPages.*;
+
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class TestRunner {
     WebDriver driver;
@@ -18,6 +17,7 @@ public class TestRunner {
     IndividualLandingPage individualLandingPage;
     IndividualServicesPage individualServicesPage;
     DisabilityAssessmentServicePage disabilityAssessmentServicePage;
+    DisabilityAssessmentSubmitPage disabilityAssessmentSubmitPage;
 
 
     TestData testData;
@@ -35,6 +35,7 @@ public class TestRunner {
         individualLandingPage = new IndividualLandingPage(driver);
         individualServicesPage = new IndividualServicesPage(driver);
         disabilityAssessmentServicePage = new DisabilityAssessmentServicePage(driver);
+        disabilityAssessmentSubmitPage = new DisabilityAssessmentSubmitPage(driver);
 
         testData = new TestData();
     }
@@ -49,7 +50,7 @@ public class TestRunner {
         individualLoginPage.clickOnLoginMock();
 
         Assert.assertTrue(
-                driver.getCurrentUrl().contains("landing"),
+                Objects.requireNonNull(driver.getCurrentUrl()).contains("landing"),
                 "Expected URL to contain 'landing' but found: " + driver.getCurrentUrl()
         );
     }
@@ -73,6 +74,18 @@ public class TestRunner {
     public  void  disabilityAssessmentServicePage () throws InterruptedException {
 
         disabilityAssessmentServicePage.clickOnStartServiceButton();
+
+    }
+
+    @Test(priority = 4, dependsOnMethods = "disabilityAssessmentServicePage")
+    public  void  disabilityAssessmentSubmitPage () throws InterruptedException {
+
+//        disabilityAssessmentSubmitPage.clickOnBeneficiaryDropDown();
+//        disabilityAssessmentSubmitPage.clickOnBeneficiaryID();
+
+        disabilityAssessmentSubmitPage.selectBeneficiaryID(testData.individualNationalID);
+        disabilityAssessmentSubmitPage.clickOnCheckEligibilityButton();
+        disabilityAssessmentSubmitPage.clickOnGoToRequestsButton();
 
     }
 

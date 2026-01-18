@@ -12,7 +12,7 @@ public class DisabilityAssessmentServicePage extends BasePage {
         this.driver = driver;
     }
 
-    private By startServiceButton = By.cssSelector("dga-button[variant='primary']");
+    private final By startServiceButton = By.cssSelector("dga-button[variant='primary']");
 
     public void clickOnStartServiceButton(){
         driver.findElement(startServiceButton).click();
