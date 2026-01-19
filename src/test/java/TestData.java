@@ -5,7 +5,7 @@ public class TestData {
 
     String individualLoginPageURL = "http://portal.individual.namaa.sumerge.com/login";
     String entityLoginPageURL = "http://portal.entities.namaa.sumerge.com/login";
-    String individualAssessmentPageURL = "http://portal.individual.namaa.sumerge.com/social-record/beneficiary-services";
+//    String individualAssessmentPageURL = "http://portal.individual.namaa.sumerge.com/social-record/beneficiary-services";
 
 
 }

@@ -1,4 +1,4 @@
-package pages.idividualsPages;
+package pages.entitiesPages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -6,10 +6,10 @@ import pages.BasePage;
 
 import java.util.ArrayList;
 
-public class IndividualLoginPage extends BasePage {
-    WebDriver driver;
+public class EntitiesLoginPage extends BasePage {
 
-    public IndividualLoginPage(WebDriver driver) {
+
+    public EntitiesLoginPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
@@ -26,15 +26,9 @@ public class IndividualLoginPage extends BasePage {
     String nationalIDFieldShadowRoot = "input[id='national_id_val']";
     ArrayList<String> nationalIDFieldRoots = new ArrayList<>();
 
-
-//    String nafathVerificationMessagedHost = "dga-modal[class='hydrated']";
-//    String nafathVerificationMessageShadowRoot = "dga-text[id='modal-title']";
-//    ArrayList<String> nafathVerificationMessageRoots = new ArrayList<>();
-
-
-
     public void navigateToLoginPage(String URL) {
-        driver.get(URL);
+        driver.navigate().to(URL);
+        wait.until(ExpectedConditions.urlContains("login"));
 
     }
 
@@ -49,7 +43,7 @@ public class IndividualLoginPage extends BasePage {
         }
     }
 
-    public void enterIndividualNationalID(String nationalID) throws InterruptedException {
+    public void enterEntityNationalID(String nationalID) throws InterruptedException {
         nationalIDFieldRoots.add(nationalIDFieldHost);
         nationalIDFieldRoots.add(nationalIDFieldShadowRoot);
         try {
@@ -64,9 +58,8 @@ public class IndividualLoginPage extends BasePage {
     public void clickOnLoginMock(){
         waitForClickability(driver.findElement(loginButton));
         driver.findElement(loginButton).click();
-        wait.until(ExpectedConditions.urlContains("landing"));
+        wait.until(ExpectedConditions.urlContains("inbox"));
     }
-
 
 
 }
